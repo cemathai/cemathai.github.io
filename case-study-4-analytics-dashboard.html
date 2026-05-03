@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics Dashboard Redesign — Cecil Mathai</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1120; --bg-surface: #111827; --bg-raised: #1a2236;
+      --border: #242424; --border-light: #2E2E2E;
+      --text-primary: #F0F0F0; --text-secondary: #8a95a3; --text-muted: #7a8fa4;
+      --accent: #7DF9FF; --accent-dim: rgba(125,249,255,0.08);
+      --font: 'Inter', -apple-system, sans-serif; --radius: 12px; --radius-sm: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 32px; }
+    .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border: 1px solid rgba(125,249,255,0.15); border-radius: 100px; padding: 4px 12px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 100; background: rgba(13,13,13,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; height: 2px; background: #F0F0F0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+    .nav-hamburger span:nth-child(2) { width: 70%; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .cs-mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: rgba(13,13,13,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid #242424; padding: 20px 32px 28px; z-index: 99; flex-direction: column; gap: 4px; opacity: 0; transform: translateY(-8px); transition: opacity 0.25s, transform 0.25s; }
+    .cs-mobile-menu.open { opacity: 1; transform: translateY(0); }
+    .cs-mobile-menu a { display: block; font-size: 20px; font-weight: 700; color: #888; padding: 10px 0; border-bottom: 1px solid #242424; transition: color 0.2s; }
+    .cs-mobile-menu a:last-child { border-bottom: none; }
+    .cs-mobile-menu a:hover { color: #7DF9FF; }
+    .cs-hero { padding: 140px 0 80px; border-bottom: 1px solid var(--border); }
+    .cs-hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .cs-hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
+    .cs-hero-summary { font-size: 20px; color: var(--text-secondary); line-height: 1.7; max-width: 680px; }
+    .cs-meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 56px; }
+    .cs-meta-item { background: var(--bg-surface); padding: 24px; }
+    .cs-meta-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .cs-meta-value { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .cs-cover { width: 100%; aspect-ratio: 16/7; background: var(--bg-raised); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .cs-cover-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--bg-raised); padding: 6px 12px; border-radius: 100px; border: 1px solid var(--border); white-space: nowrap; }
+    .cs-cover-num { font-size: 120px; font-weight: 800; color: var(--border-light); letter-spacing: -0.08em; user-select: none; }
+    .cs-body { padding: 80px 0 0; }
+    .cs-section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    .cs-section:last-child { border-bottom: none; }
+    .cs-section-tag { margin-bottom: 16px; }
+    .cs-section h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 24px; line-height: 1.15; }
+    .cs-section p { font-size: 17px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 20px; }
+    .cs-section p:last-child { margin-bottom: 0; }
+    .cs-section p strong { color: var(--text-primary); font-weight: 600; }
+    .cs-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; margin-bottom: 20px; }
+    .cs-section ul li { display: flex; gap: 12px; font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+    .cs-section ul li::before { content: "→"; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+    .cs-img { width: 100%; border-radius: var(--radius); background: var(--bg-raised); border: 1px solid var(--border); overflow: hidden; margin: 40px 0; }
+    .cs-img-inner { aspect-ratio: 16/8; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .cs-img-icon { font-size: 32px; opacity: 0.3; }
+    .cs-img-text { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .cs-img-caption { padding: 14px 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); font-style: italic; }
+    .cs-callout { background: var(--accent-dim); border: 1px solid rgba(125,249,255,0.2); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; }
+    .cs-callout-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .cs-callout p { font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.7; margin: 0; }
+    .cs-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0; }
+    .cs-stat { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; }
+    .cs-stat-num { font-size: 42px; font-weight: 800; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .cs-stat-label { font-size: 14px; color: var(--text-secondary); }
+    .cs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 32px 0; }
+    .cs-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .cs-card-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+    .cs-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+    .cs-next { background: var(--bg-surface); border-top: 1px solid var(--border); padding: 64px 0; }
+    .cs-next-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cs-next-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .cs-next-title { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+    .cs-next-link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--accent); white-space: nowrap; transition: gap 0.2s; }
+    .cs-next-link:hover { gap: 14px; }
+    footer { padding: 32px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-size: 15px; font-weight: 800; letter-spacing: -0.03em; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 13px; color: var(--text-muted); }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) { .cs-meta-grid { grid-template-columns: 1fr 1fr; } .cs-stats { grid-template-columns: 1fr; } .cs-two-col { grid-template-columns: 1fr; } .cs-next-inner { flex-direction: column; align-items: flex-start; } }
+    @media (max-width: 600px) { .container { padding: 0 20px; } .container-wide { padding: 0 20px; } .nav-inner { padding: 0 20px; } .nav-back { display: none; } .nav-hamburger { display: flex; } .cs-mobile-menu { display: flex; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="42" height="36" viewBox="0 0 104 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#7DF9FF" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <line x1="52" y1="10" x2="52" y2="80" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="96" y2="80" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="52" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="8" y1="88" x2="96" y2="88" stroke="#444" stroke-width="1"/>
+        </svg>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to work
+      </a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="cs-mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="index.html#work" onclick="closeMenu()">← Back to work</a>
+  </div>
+
+  <header class="cs-hero">
+    <div class="container">
+      <div class="cs-hero-meta">
+        <span class="tag">B2B Dashboard</span>
+        <span class="tag">Enterprise UX</span>
+        <span class="tag">2022</span>
+      </div>
+      <h1>Enterprise analytics dashboard redesign</h1>
+      <p class="cs-hero-summary">A legacy analytics tool used daily by 500+ enterprise users across 3 business functions had become impossible to navigate. A research-driven redesign transformed it into a focused, role-based experience — cutting task completion time in half.</p>
+      <div class="cs-meta-grid">
+        <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">Senior UX Designer</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">16 weeks</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Team</div><div class="cs-meta-value">2 designers, 1 researcher, 8 engineers</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Figma, Lookback, FullStory, Miro</div></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="cs-cover">
+    <span class="cs-cover-num">04</span>
+    <span class="cs-cover-label">Replace with project cover image</span>
+  </div>
+
+  <div class="cs-body">
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">The problem</span></div>
+        <h2 class="fade-up">A tool everyone used but nobody liked.</h2>
+        <p class="fade-up">The analytics platform had been built feature-by-feature over four years. Every team had requested additions; nothing had ever been removed. The result was a dashboard with <strong>47 visible metrics on the default view</strong>, a navigation menu with 6 levels of nesting, and a filter system that required training to use.</p>
+        <p class="fade-up">Support tickets for the analytics tool accounted for 23% of all internal helpdesk requests. Quarterly NPS for the tool sat at -12. The Head of Data called it "the most important tool we have that everyone hates."</p>
+        <div class="cs-callout fade-up">
+          <div class="cs-callout-label">Design challenge</div>
+          <p>"How might we redesign the analytics experience so that each user can find what matters to them in under 30 seconds — without losing access to the depth that power users need?"</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">Discovery</span></div>
+        <h2 class="fade-up">Three tools in one skin — worn down to nothing.</h2>
+        <p class="fade-up">I started by interviewing 22 users across the three major user groups: Sales Operations, Marketing Analytics, and Finance. What emerged was striking — these three groups were fundamentally different in how they used the tool, what they needed from it, and how often they used it.</p>
+
+        <div class="cs-two-col fade-up">
+          <div class="cs-card">
+            <div class="cs-card-title">Sales Operations</div>
+            <p>Used daily. Needed 4–5 specific KPIs. Valued speed above all. Spent 60% of their time dismissing charts that weren't relevant to them.</p>
+          </div>
+          <div class="cs-card">
+            <div class="cs-card-title">Marketing Analytics</div>
+            <p>Used 2–3× per week. Deep exploratory sessions. Needed powerful filtering and data export. Felt constrained by the rigid grid layout.</p>
+          </div>
+        </div>
+        <div class="cs-two-col fade-up">
+          <div class="cs-card">
+            <div class="cs-card-title">Finance</div>
+            <p>Monthly review cycles. Needed historical trend data and clean exports for board decks. Found the real-time updates distracting and irrelevant.</p>
+          </div>
+          <div class="cs-card">
+            <div class="cs-card-title">The insight</div>
+            <p>One dashboard could never serve all three groups well. The solution wasn't to redesign a single view — it was to introduce role-based views that shared a common data layer.</p>
+          </div>
+        </div>
+
+        <div class="cs-img fade-up">
+          <div class="cs-img-inner">
+            <div class="cs-img-icon">🗃</div>
+            <div class="cs-img-text">Add your user persona / role mapping diagram here</div>
+          </div>
+          <div class="cs-img-caption">Role-based needs mapping — 22 interviews synthesized into 3 distinct user archetypes</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">Design process</span></div>
+        <h2 class="fade-up">One data layer. Three views. No duplication.</h2>
+        <p class="fade-up">The architectural concept was a role-based dashboard model: users would be assigned a default view on login (configurable by admins), with the ability to switch views if needed. Each view exposed the same underlying data, just through a lens optimized for that role's primary jobs-to-be-done.</p>
+        <ul class="fade-up">
+          <li><strong>Sales view:</strong> Compact, always-visible KPI strip at the top. Sparklines replacing full charts for secondary metrics. One-click drill-down.</li>
+          <li><strong>Analytics view:</strong> Flexible grid with drag-and-drop layout. Advanced filter panel (collapsible). CSV and API export built into every chart.</li>
+          <li><strong>Finance view:</strong> Time-period focused. Historical comparisons front and center. "Board export" mode that generated a clean, branded PDF of selected charts.</li>
+        </ul>
+
+        <p class="fade-up">Navigation was collapsed from 6 levels to 2. The IA was rebuilt from scratch using card sorting with 30 participants to validate groupings before any wireframes were drawn.</p>
+
+        <div class="cs-img fade-up">
+          <div class="cs-img-inner">
+            <div class="cs-img-icon">📊</div>
+            <div class="cs-img-text">Add your dashboard wireframes / final UI here</div>
+          </div>
+          <div class="cs-img-caption">The three role-based views — Sales, Analytics, and Finance — sharing one data layer</div>
+        </div>
+
+        <p class="fade-up">Usability testing ran across 4 iterations. We measured time-on-task for 6 core scenarios per role. By the fourth round, every scenario met or exceeded our 30-second target.</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">Results</span></div>
+        <h2 class="fade-up">Support tickets halved. NPS flipped positive.</h2>
+        <p class="fade-up">The new dashboard shipped in phases over 8 weeks — Sales view first, then Analytics, then Finance. Each release was accompanied by a short in-app walkthrough and a role-specific help article.</p>
+
+        <div class="cs-stats fade-up">
+          <div class="cs-stat"><div class="cs-stat-num">55%</div><div class="cs-stat-label">Reduction in task completion time</div></div>
+          <div class="cs-stat"><div class="cs-stat-num">+34</div><div class="cs-stat-label">NPS (up from -12)</div></div>
+          <div class="cs-stat"><div class="cs-stat-num">48%</div><div class="cs-stat-label">Drop in analytics-related support tickets</div></div>
+        </div>
+
+        <p class="fade-up">The role-based architecture has since been extended to two additional teams (Customer Success and Product) without requiring a redesign — it proved to be a scalable pattern.</p>
+        <p class="fade-up"><strong>Lessons learned:</strong> When a tool tries to serve everyone equally, it ends up serving no one particularly well. Permission to segment the experience by role was the single most impactful decision of the project — and it only came after we listened carefully enough to hear that the problem wasn't the UI, it was the information architecture.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="cs-next">
+    <div class="container-wide">
+      <div class="cs-next-inner">
+        <div>
+          <div class="cs-next-label">Back to start</div>
+          <div class="cs-next-title">FinTech onboarding redesign</div>
+        </div>
+        <a href="case-study-1-fintech-onboarding.html" class="cs-next-link">View case study →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container-wide">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-logo">CM<span>.</span></a>
+        <p class="footer-copy">© 2026 Cecil Mathai</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 600) closeMenu();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geometric Logo Concepts — Cecil Mathai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0D0D0D;
+      color: #F0F0F0;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 40px 80px;
+      min-height: 100vh;
+    }
+    h1 { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .subtitle { font-size: 13px; color: #444; margin-bottom: 56px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1080px; }
+    .card { background: #141414; border: 1px solid #242424; border-radius: 16px; overflow: hidden; transition: border-color 0.2s; }
+    .card:hover { border-color: #333; }
+    .card-preview { display: flex; align-items: center; justify-content: center; padding: 52px 24px; min-height: 220px; }
+    .card-footer { border-top: 1px solid #1E1E1E; padding: 18px 20px; }
+    .card-option { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #7DF9FF; margin-bottom: 5px; }
+    .card-title { font-size: 15px; font-weight: 700; color: #F0F0F0; margin-bottom: 4px; }
+    .card-desc { font-size: 12px; color: #555; line-height: 1.6; }
+    .scale-row { display: flex; align-items: center; gap: 16px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #1A1A1A; }
+    .scale-label { font-size: 10px; color: #3A3A3A; font-weight: 500; }
+    .scale-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .scale-tag { font-size: 10px; color: #3A3A3A; }
+
+    /* Light bg strip */
+    .light-strip { margin-top: 40px; max-width: 1080px; background: #F0F0F0; border-radius: 12px; padding: 28px 36px; display: flex; align-items: center; gap: 48px; flex-wrap: wrap; }
+    .light-label { font-size: 11px; color: #0D0D0D; opacity: 0.35; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Geometric logo concepts — additional options</h1>
+  <p class="subtitle">4 new directions · Ice blue on dark</p>
+
+  <div class="grid">
+
+    <!-- Option D: Negative space cutout -->
+    <div class="card">
+      <div class="card-preview">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Filled circle in accent -->
+          <circle cx="50" cy="50" r="48" fill="#7DF9FF"/>
+          <!-- Cut out arc to form a C shape in the circle -->
+          <circle cx="50" cy="50" r="48" fill="#7DF9FF"/>
+          <!-- White M inside -->
+          <line x1="26" y1="28" x2="26" y2="72" stroke="#0D0D0D" stroke-width="7" stroke-linecap="round"/>
+          <line x1="74" y1="28" x2="74" y2="72" stroke="#0D0D0D" stroke-width="7" stroke-linecap="round"/>
+          <line x1="26" y1="28" x2="50" y2="53" stroke="#0D0D0D" stroke-width="7" stroke-linecap="round"/>
+          <line x1="74" y1="28" x2="50" y2="53" stroke="#0D0D0D" stroke-width="7" stroke-linecap="round"/>
+          <!-- C arc cut from right side — negative space -->
+          <path d="M92 50 A42 42 0 1 0 92 50.001 Z" fill="#7DF9FF" opacity="0"/>
+          <!-- Accent C arc overlaid -->
+          <path d="M72 24 Q24 24 24 50 Q24 76 72 76" stroke="#0D0D0D" stroke-width="7.5" stroke-linecap="round" fill="none" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option D</div>
+        <div class="card-title">Filled circle mark</div>
+        <div class="card-desc">Solid accent circle with the C and M rendered in dark ink. Inverts the color logic — bold and eye-catching.</div>
+        <div class="scale-row">
+          <span class="scale-label">Scales:</span>
+          <div class="scale-item">
+            <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="48" fill="#7DF9FF"/>
+              <line x1="26" y1="28" x2="26" y2="72" stroke="#0D0D0D" stroke-width="8" stroke-linecap="round"/>
+              <line x1="74" y1="28" x2="74" y2="72" stroke="#0D0D0D" stroke-width="8" stroke-linecap="round"/>
+              <line x1="26" y1="28" x2="50" y2="53" stroke="#0D0D0D" stroke-width="8" stroke-linecap="round"/>
+              <line x1="74" y1="28" x2="50" y2="53" stroke="#0D0D0D" stroke-width="8" stroke-linecap="round"/>
+              <path d="M72 24 Q24 24 24 50 Q24 76 72 76" stroke="#0D0D0D" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.85"/>
+            </svg>
+            <span class="scale-tag">32px</span>
+          </div>
+          <div class="scale-item">
+            <svg width="16" height="16" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="48" fill="#7DF9FF"/>
+              <line x1="28" y1="28" x2="28" y2="72" stroke="#0D0D0D" stroke-width="10" stroke-linecap="round"/>
+              <line x1="72" y1="28" x2="72" y2="72" stroke="#0D0D0D" stroke-width="10" stroke-linecap="round"/>
+              <line x1="28" y1="28" x2="50" y2="54" stroke="#0D0D0D" stroke-width="10" stroke-linecap="round"/>
+              <line x1="72" y1="28" x2="50" y2="54" stroke="#0D0D0D" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+            <span class="scale-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option E: Thin-line minimal -->
+    <div class="card">
+      <div class="card-preview">
+        <svg width="104" height="90" viewBox="0 0 104 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ultra-thin C -->
+          <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#7DF9FF" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <!-- Ultra-thin M -->
+          <line x1="52" y1="10" x2="52" y2="80" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="96" y2="80" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="52" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Horizontal baseline -->
+          <line x1="8" y1="88" x2="96" y2="88" stroke="#242424" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option E</div>
+        <div class="card-title">Hairline mark</div>
+        <div class="card-desc">Ultra-thin strokes with a grounding baseline. Architectural and refined — suited to a high-end or editorial aesthetic.</div>
+        <div class="scale-row">
+          <span class="scale-label">Scales:</span>
+          <div class="scale-item">
+            <svg width="34" height="30" viewBox="0 0 104 90" fill="none">
+              <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#7DF9FF" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <line x1="52" y1="10" x2="52" y2="80" stroke="#F0F0F0" stroke-width="5" stroke-linecap="round"/>
+              <line x1="96" y1="10" x2="96" y2="80" stroke="#F0F0F0" stroke-width="5" stroke-linecap="round"/>
+              <line x1="52" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="5" stroke-linecap="round"/>
+              <line x1="96" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <span class="scale-tag">32px</span>
+          </div>
+          <div class="scale-item">
+            <svg width="17" height="15" viewBox="0 0 104 90" fill="none">
+              <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#7DF9FF" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <line x1="52" y1="10" x2="52" y2="80" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <line x1="96" y1="10" x2="96" y2="80" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <line x1="52" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <line x1="96" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+            </svg>
+            <span class="scale-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option F: Stacked in pill -->
+    <div class="card">
+      <div class="card-preview">
+        <svg width="80" height="112" viewBox="0 0 80 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Pill / tall rounded rect -->
+          <rect x="2" y="2" width="76" height="108" rx="20" fill="#141414" stroke="#2E2E2E" stroke-width="1.5"/>
+          <!-- Top accent line -->
+          <rect x="2" y="2" width="76" height="4" rx="2" fill="#7DF9FF" opacity="0.6"/>
+          <!-- C — top half -->
+          <path d="M56 22 Q22 22 22 38 Q22 54 56 54" stroke="#7DF9FF" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+          <!-- Divider -->
+          <line x1="16" y1="58" x2="64" y2="58" stroke="#242424" stroke-width="1"/>
+          <!-- M — bottom half -->
+          <line x1="22" y1="64" x2="22" y2="90" stroke="#F0F0F0" stroke-width="6.5" stroke-linecap="round"/>
+          <line x1="58" y1="64" x2="58" y2="90" stroke="#F0F0F0" stroke-width="6.5" stroke-linecap="round"/>
+          <line x1="22" y1="64" x2="40" y2="80" stroke="#F0F0F0" stroke-width="6.5" stroke-linecap="round"/>
+          <line x1="58" y1="64" x2="40" y2="80" stroke="#F0F0F0" stroke-width="6.5" stroke-linecap="round"/>
+          <!-- Bottom accent dot -->
+          <circle cx="40" cy="100" r="3" fill="#7DF9FF" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option F</div>
+        <div class="card-title">Stacked pill</div>
+        <div class="card-desc">C and M divided by a hairline and stacked in a vertical pill. Structured and symmetrical — different from anything common in the UX space.</div>
+        <div class="scale-row">
+          <span class="scale-label">Scales:</span>
+          <div class="scale-item">
+            <svg width="22" height="32" viewBox="0 0 80 112" fill="none">
+              <rect x="2" y="2" width="76" height="108" rx="20" fill="#141414" stroke="#2E2E2E" stroke-width="2"/>
+              <rect x="2" y="2" width="76" height="6" rx="3" fill="#7DF9FF" opacity="0.6"/>
+              <path d="M56 22 Q22 22 22 38 Q22 54 56 54" stroke="#7DF9FF" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <line x1="16" y1="58" x2="64" y2="58" stroke="#333" stroke-width="2"/>
+              <line x1="22" y1="64" x2="22" y2="90" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+              <line x1="58" y1="64" x2="58" y2="90" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+              <line x1="22" y1="64" x2="40" y2="80" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+              <line x1="58" y1="64" x2="40" y2="80" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+            <span class="scale-tag">32px</span>
+          </div>
+          <div class="scale-item">
+            <svg width="11" height="16" viewBox="0 0 80 112" fill="none">
+              <rect x="2" y="2" width="76" height="108" rx="20" fill="#1A1A1A"/>
+              <path d="M56 22 Q22 22 22 38 Q22 54 56 54" stroke="#7DF9FF" stroke-width="12" stroke-linecap="round" fill="none"/>
+              <line x1="22" y1="64" x2="22" y2="90" stroke="#F0F0F0" stroke-width="12" stroke-linecap="round"/>
+              <line x1="58" y1="64" x2="58" y2="90" stroke="#F0F0F0" stroke-width="12" stroke-linecap="round"/>
+              <line x1="22" y1="64" x2="40" y2="80" stroke="#F0F0F0" stroke-width="12" stroke-linecap="round"/>
+              <line x1="58" y1="64" x2="40" y2="80" stroke="#F0F0F0" stroke-width="12" stroke-linecap="round"/>
+            </svg>
+            <span class="scale-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option G: Arc + peak mark -->
+    <div class="card">
+      <div class="card-preview">
+        <svg width="108" height="108" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Square with cut corner -->
+          <rect x="2" y="2" width="104" height="104" rx="22" fill="#141414" stroke="#242424" stroke-width="1.5"/>
+          <!-- Accent corner triangle -->
+          <path d="M86 2 L106 2 L106 22 Z" fill="#7DF9FF" opacity="0.15"/>
+          <path d="M2 86 L2 106 L22 106 Z" fill="#7DF9FF" opacity="0.08"/>
+
+          <!-- Abstract C: a crescent / open arc — bold -->
+          <path d="M58 26 A28 28 0 1 0 58 82" stroke="#7DF9FF" stroke-width="8" stroke-linecap="round" fill="none"/>
+
+          <!-- Abstract M: two peaks / chevrons above a baseline -->
+          <line x1="58" y1="26" x2="58" y2="82" stroke="#7DF9FF" stroke-width="8" stroke-linecap="round" opacity="0.25"/>
+          <line x1="60" y1="30" x2="60" y2="78" stroke="#F0F0F0" stroke-width="7.5" stroke-linecap="round"/>
+          <line x1="88" y1="30" x2="88" y2="78" stroke="#F0F0F0" stroke-width="7.5" stroke-linecap="round"/>
+          <line x1="60" y1="30" x2="74" y2="52" stroke="#F0F0F0" stroke-width="7.5" stroke-linecap="round"/>
+          <line x1="88" y1="30" x2="74" y2="52" stroke="#F0F0F0" stroke-width="7.5" stroke-linecap="round"/>
+
+          <!-- Small accent dot bottom right -->
+          <circle cx="88" cy="90" r="4" fill="#7DF9FF" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option G</div>
+        <div class="card-title">Arc + M in square</div>
+        <div class="card-desc">A full C arc embraces the M inside a rounded square. The C literally wraps around the M — a spatial metaphor for the design process itself.</div>
+        <div class="scale-row">
+          <span class="scale-label">Scales:</span>
+          <div class="scale-item">
+            <svg width="32" height="32" viewBox="0 0 108 108" fill="none">
+              <rect x="2" y="2" width="104" height="104" rx="22" fill="#141414" stroke="#242424" stroke-width="2"/>
+              <path d="M58 26 A28 28 0 1 0 58 82" stroke="#7DF9FF" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <line x1="60" y1="30" x2="60" y2="78" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <line x1="88" y1="30" x2="88" y2="78" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <line x1="60" y1="30" x2="74" y2="52" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <line x1="88" y1="30" x2="74" y2="52" stroke="#F0F0F0" stroke-width="8" stroke-linecap="round"/>
+              <circle cx="88" cy="90" r="5" fill="#7DF9FF" opacity="0.6"/>
+            </svg>
+            <span class="scale-tag">32px</span>
+          </div>
+          <div class="scale-item">
+            <svg width="16" height="16" viewBox="0 0 108 108" fill="none">
+              <rect x="2" y="2" width="104" height="104" rx="18" fill="#141414"/>
+              <path d="M58 26 A28 28 0 1 0 58 82" stroke="#7DF9FF" stroke-width="11" stroke-linecap="round" fill="none"/>
+              <line x1="60" y1="30" x2="60" y2="78" stroke="#F0F0F0" stroke-width="10" stroke-linecap="round"/>
+              <line x1="88" y1="30" x2="88" y2="78" stroke="#F0F0F0" stroke-width="10" stroke-linecap="round"/>
+              <line x1="60" y1="30" x2="74" y2="52" stroke="#F0F0F0" stroke-width="10" stroke-linecap="round"/>
+              <line x1="88" y1="30" x2="74" y2="52" stroke="#F0F0F0" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+            <span class="scale-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Light background preview -->
+  <div style="margin-top: 40px; max-width: 1080px;">
+    <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #333; margin-bottom: 16px;">On light backgrounds</p>
+    <div class="light-strip">
+
+      <!-- D light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="48" fill="#0099A8"/>
+          <line x1="26" y1="28" x2="26" y2="72" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+          <line x1="74" y1="28" x2="74" y2="72" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+          <line x1="26" y1="28" x2="50" y2="53" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+          <line x1="74" y1="28" x2="50" y2="53" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+          <path d="M72 24 Q24 24 24 50 Q24 76 72 76" stroke="#fff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.7"/>
+        </svg>
+        <span style="font-size:11px;color:#999;font-weight:500;">D</span>
+      </div>
+
+      <!-- E light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="68" height="58" viewBox="0 0 104 90" fill="none">
+          <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#0099A8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <line x1="52" y1="10" x2="52" y2="80" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="96" y2="80" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="52" y1="10" x2="74" y2="40" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="74" y2="40" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="8" y1="88" x2="96" y2="88" stroke="#CCC" stroke-width="1"/>
+        </svg>
+        <span style="font-size:11px;color:#999;font-weight:500;">E</span>
+      </div>
+
+      <!-- F light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="46" height="64" viewBox="0 0 80 112" fill="none">
+          <rect x="2" y="2" width="76" height="108" rx="20" fill="#fff" stroke="#DDD" stroke-width="2"/>
+          <rect x="2" y="2" width="76" height="5" rx="2.5" fill="#0099A8" opacity="0.8"/>
+          <path d="M56 22 Q22 22 22 38 Q22 54 56 54" stroke="#0099A8" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <line x1="16" y1="58" x2="64" y2="58" stroke="#DDD" stroke-width="1"/>
+          <line x1="22" y1="64" x2="22" y2="90" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="58" y1="64" x2="58" y2="90" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="22" y1="64" x2="40" y2="80" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="58" y1="64" x2="40" y2="80" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="40" cy="100" r="3" fill="#0099A8" opacity="0.5"/>
+        </svg>
+        <span style="font-size:11px;color:#999;font-weight:500;">F</span>
+      </div>
+
+      <!-- G light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="64" height="64" viewBox="0 0 108 108" fill="none">
+          <rect x="2" y="2" width="104" height="104" rx="22" fill="#fff" stroke="#DDD" stroke-width="2"/>
+          <path d="M58 26 A28 28 0 1 0 58 82" stroke="#0099A8" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <line x1="60" y1="30" x2="60" y2="78" stroke="#111" stroke-width="7.5" stroke-linecap="round"/>
+          <line x1="88" y1="30" x2="88" y2="78" stroke="#111" stroke-width="7.5" stroke-linecap="round"/>
+          <line x1="60" y1="30" x2="74" y2="52" stroke="#111" stroke-width="7.5" stroke-linecap="round"/>
+          <line x1="88" y1="30" x2="74" y2="52" stroke="#111" stroke-width="7.5" stroke-linecap="round"/>
+          <circle cx="88" cy="90" r="4" fill="#0099A8" opacity="0.5"/>
+        </svg>
+        <span style="font-size:11px;color:#999;font-weight:500;">G</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

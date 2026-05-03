@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Tracking App — Cecil Mathai</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B1120; --bg-surface: #111827; --bg-raised: #1a2236;
+      --border: #242424; --border-light: #2E2E2E;
+      --text-primary: #F0F0F0; --text-secondary: #8a95a3; --text-muted: #7a8fa4;
+      --accent: #7DF9FF; --accent-dim: rgba(125,249,255,0.08);
+      --font: 'Inter', -apple-system, sans-serif; --radius: 12px; --radius-sm: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 32px; }
+    .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border: 1px solid rgba(125,249,255,0.15); border-radius: 100px; padding: 4px 12px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 100; background: rgba(13,13,13,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; height: 2px; background: #F0F0F0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+    .nav-hamburger span:nth-child(2) { width: 70%; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .cs-mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: rgba(13,13,13,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid #242424; padding: 20px 32px 28px; z-index: 99; flex-direction: column; gap: 4px; opacity: 0; transform: translateY(-8px); transition: opacity 0.25s, transform 0.25s; }
+    .cs-mobile-menu.open { opacity: 1; transform: translateY(0); }
+    .cs-mobile-menu a { display: block; font-size: 20px; font-weight: 700; color: #888; padding: 10px 0; border-bottom: 1px solid #242424; transition: color 0.2s; }
+    .cs-mobile-menu a:last-child { border-bottom: none; }
+    .cs-mobile-menu a:hover { color: #7DF9FF; }
+    .cs-hero { padding: 140px 0 80px; border-bottom: 1px solid var(--border); }
+    .cs-hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .cs-hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
+    .cs-hero-summary { font-size: 20px; color: var(--text-secondary); line-height: 1.7; max-width: 680px; }
+    .cs-meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 56px; }
+    .cs-meta-item { background: var(--bg-surface); padding: 24px; }
+    .cs-meta-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .cs-meta-value { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .cs-cover { width: 100%; aspect-ratio: 16/7; background: var(--bg-raised); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .cs-cover-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--bg-raised); padding: 6px 12px; border-radius: 100px; border: 1px solid var(--border); white-space: nowrap; }
+    .cs-cover-num { font-size: 120px; font-weight: 800; color: var(--border-light); letter-spacing: -0.08em; user-select: none; }
+    .cs-body { padding: 80px 0 0; }
+    .cs-section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    .cs-section:last-child { border-bottom: none; }
+    .cs-section-tag { margin-bottom: 16px; }
+    .cs-section h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 24px; line-height: 1.15; }
+    .cs-section p { font-size: 17px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 20px; }
+    .cs-section p:last-child { margin-bottom: 0; }
+    .cs-section p strong { color: var(--text-primary); font-weight: 600; }
+    .cs-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; margin-bottom: 20px; }
+    .cs-section ul li { display: flex; gap: 12px; font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+    .cs-section ul li::before { content: "→"; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+    .cs-img { width: 100%; border-radius: var(--radius); background: var(--bg-raised); border: 1px solid var(--border); overflow: hidden; margin: 40px 0; }
+    .cs-img-inner { aspect-ratio: 16/8; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .cs-img-icon { font-size: 32px; opacity: 0.3; }
+    .cs-img-text { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .cs-img-caption { padding: 14px 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); font-style: italic; }
+    .cs-callout { background: var(--accent-dim); border: 1px solid rgba(125,249,255,0.2); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; }
+    .cs-callout-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .cs-callout p { font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.7; margin: 0; }
+    .cs-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0; }
+    .cs-stat { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; }
+    .cs-stat-num { font-size: 42px; font-weight: 800; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .cs-stat-label { font-size: 14px; color: var(--text-secondary); }
+    .cs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 32px 0; }
+    .cs-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .cs-card-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+    .cs-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+    .cs-next { background: var(--bg-surface); border-top: 1px solid var(--border); padding: 64px 0; }
+    .cs-next-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cs-next-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .cs-next-title { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+    .cs-next-link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--accent); white-space: nowrap; transition: gap 0.2s; }
+    .cs-next-link:hover { gap: 14px; }
+    footer { padding: 32px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-size: 15px; font-weight: 800; letter-spacing: -0.03em; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 13px; color: var(--text-muted); }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) { .cs-meta-grid { grid-template-columns: 1fr 1fr; } .cs-stats { grid-template-columns: 1fr; } .cs-two-col { grid-template-columns: 1fr; } .cs-next-inner { flex-direction: column; align-items: flex-start; } }
+    @media (max-width: 600px) { .container { padding: 0 20px; } .container-wide { padding: 0 20px; } .nav-inner { padding: 0 20px; } .nav-back { display: none; } .nav-hamburger { display: flex; } .cs-mobile-menu { display: flex; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="42" height="36" viewBox="0 0 104 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#7DF9FF" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <line x1="52" y1="10" x2="52" y2="80" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="96" y2="80" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="52" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="96" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="8" y1="88" x2="96" y2="88" stroke="#444" stroke-width="1"/>
+        </svg>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to work
+      </a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="cs-mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="index.html#work" onclick="closeMenu()">← Back to work</a>
+  </div>
+
+  <header class="cs-hero">
+    <div class="container">
+      <div class="cs-hero-meta">
+        <span class="tag">Mobile App</span>
+        <span class="tag">Inclusive Design</span>
+        <span class="tag">UX Research</span>
+        <span class="tag">2023</span>
+      </div>
+      <h1>Health tracking app for low-literacy users</h1>
+      <p class="cs-hero-summary">Designing an inclusive mobile experience for users with low digital literacy required rethinking the entire interaction model — from navigation to data input to how we communicate progress. The result launched to a 4.8★ App Store rating.</p>
+      <div class="cs-meta-grid">
+        <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">Lead UX Designer</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">18 weeks</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Team</div><div class="cs-meta-value">2 designers, 1 researcher, 5 engineers</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Figma, Protopie, Dovetail</div></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="cs-cover">
+    <span class="cs-cover-num">03</span>
+    <span class="cs-cover-label">Replace with project cover image</span>
+  </div>
+
+  <div class="cs-body">
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">The problem</span></div>
+        <h2 class="fade-up">Health apps were designed for people who didn't need them most.</h2>
+        <p class="fade-up">Our client — a non-profit focused on preventive health in under-resourced communities — had an existing mobile app with a 2.1★ rating and 73% churn in the first week. Users were abandoning it not because they didn't care about their health, but because <strong>the app assumed skills and confidence they didn't have.</strong></p>
+        <p class="fade-up">This wasn't a problem with user motivation. It was a failure of design to meet people where they were.</p>
+        <div class="cs-callout fade-up">
+          <div class="cs-callout-label">Design challenge</div>
+          <p>"How might we design a health tracking experience that feels approachable and trustworthy for users with low digital literacy — without making them feel talked down to?"</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">Research</span></div>
+        <h2 class="fade-up">Understanding users whose lives looked nothing like ours.</h2>
+        <p class="fade-up">The research phase was the most demanding of my career. We conducted 18 contextual interviews with users in their homes and community centers — not in a sterile UX lab. We observed people using smartphones, watched them navigate the existing app, and asked about the last time technology had frustrated them.</p>
+
+        <div class="cs-two-col fade-up">
+          <div class="cs-card">
+            <div class="cs-card-title">Key user needs</div>
+            <p>Immediate understanding without reading. Confirmation that they did things "right." Privacy — they didn't want family members to see their health data. Forgiveness — the ability to undo or correct without fear.</p>
+          </div>
+          <div class="cs-card">
+            <div class="cs-card-title">Barriers identified</div>
+            <p>Dense text-heavy instructions. Jargon (e.g., "BMI", "systolic"). Overwhelming dashboard with 12+ metrics. No feedback when an action succeeded. Punishing error states with no clear recovery path.</p>
+          </div>
+        </div>
+
+        <p class="fade-up">We also ran a <strong>plain language audit</strong> of the existing app: every string of copy was graded for reading level. The average was Grade 11. Our target was Grade 5–6.</p>
+
+        <div class="cs-img fade-up">
+          <div class="cs-img-inner">
+            <div class="cs-img-icon">👥</div>
+            <div class="cs-img-text">Add your user research photos / journey map here</div>
+          </div>
+          <div class="cs-img-caption">User journey map built from 18 contextual interviews, highlighting emotional highs and lows</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">Design process</span></div>
+        <h2 class="fade-up">Icons first. Words second. Never alone.</h2>
+        <p class="fade-up">The redesign was structured around five inclusive design principles that emerged directly from research:</p>
+        <ul class="fade-up">
+          <li><strong>Icon-first navigation:</strong> Every primary action was represented by a clear icon before any label. Icons were co-designed with users in participatory workshops.</li>
+          <li><strong>Progressive disclosure:</strong> The home screen showed one thing: your most important health metric for today. More detail was always available, but never forced.</li>
+          <li><strong>Confirmation at every step:</strong> Success states were generous — visual, haptic, and audio feedback for every completed action.</li>
+          <li><strong>Plain language throughout:</strong> Every label, error message, and instruction was rewritten to Grade 5 reading level and reviewed by a health literacy specialist.</li>
+          <li><strong>Forgiving inputs:</strong> Data entry used sliders, steppers, and visual selectors over free-text fields wherever possible.</li>
+        </ul>
+
+        <div class="cs-img fade-up">
+          <div class="cs-img-inner">
+            <div class="cs-img-icon">📱</div>
+            <div class="cs-img-text">Add your mobile UI designs / screens here</div>
+          </div>
+          <div class="cs-img-caption">Final UI — icon-first navigation, simplified home dashboard, and generous success states</div>
+        </div>
+
+        <p class="fade-up">We ran <strong>6 rounds of usability testing</strong> with 5 users each, iterating between every round. The final prototype was tested with 12 users before handoff — all of whom completed core tasks without assistance.</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-tag fade-up"><span class="tag">Results</span></div>
+        <h2 class="fade-up">From 2.1★ to 4.8★ in the same market.</h2>
+        <p class="fade-up">The redesigned app launched six months after kickoff. App Store reviews cited "easy to understand," "doesn't make me feel stupid," and "I actually use it every day" as recurring themes — language lifted almost verbatim from our research insights.</p>
+
+        <div class="cs-stats fade-up">
+          <div class="cs-stat"><div class="cs-stat-num">4.8★</div><div class="cs-stat-label">App Store rating at launch</div></div>
+          <div class="cs-stat"><div class="cs-stat-num">61%</div><div class="cs-stat-label">Reduction in week-1 churn</div></div>
+          <div class="cs-stat"><div class="cs-stat-num">Gr. 5</div><div class="cs-stat-label">Average reading level achieved</div></div>
+        </div>
+
+        <p class="fade-up">The project was featured in a case study by the non-profit's health equity program and cited as a model for inclusive design in public health technology.</p>
+        <p class="fade-up"><strong>Lessons learned:</strong> Inclusive design isn't about dumbing things down — it's about removing unnecessary complexity that never served anyone in the first place. The redesign made the app better for <em>all</em> users, not just the ones we were designing for explicitly.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="cs-next">
+    <div class="container-wide">
+      <div class="cs-next-inner">
+        <div>
+          <div class="cs-next-label">Next case study</div>
+          <div class="cs-next-title">Enterprise analytics dashboard redesign</div>
+        </div>
+        <a href="case-study-4-analytics-dashboard.html" class="cs-next-link">View case study →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container-wide">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-logo">CM<span>.</span></a>
+        <p class="footer-copy">© 2026 Cecil Mathai</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 600) closeMenu();
+    });
+  </script>
+</body>
+</html>

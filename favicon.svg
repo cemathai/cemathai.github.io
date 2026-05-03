@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 104 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark rounded background -->
+  <rect width="104" height="90" rx="18" fill="#0D0D0D"/>
+  <!-- C arc — ice blue, thicker for small sizes -->
+  <path d="M44 10 Q8 10 8 45 Q8 80 44 80" stroke="#7DF9FF" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <!-- M left vertical -->
+  <line x1="53" y1="10" x2="53" y2="80" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+  <!-- M right vertical -->
+  <line x1="96" y1="10" x2="96" y2="80" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+  <!-- M left diagonal -->
+  <line x1="53" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+  <!-- M right diagonal -->
+  <line x1="96" y1="10" x2="74" y2="40" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+  <!-- Baseline -->
+  <line x1="8" y1="88" x2="96" y2="88" stroke="#7DF9FF" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+</svg>

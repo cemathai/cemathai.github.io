@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logo Concepts — Cecil Mathai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0D0D0D;
+      color: #F0F0F0;
+      font-family: 'Inter', sans-serif;
+      padding: 60px 40px;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 64px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 960px;
+    }
+    .card {
+      background: #141414;
+      border: 1px solid #242424;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .card-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 32px;
+      min-height: 280px;
+      position: relative;
+    }
+    .card-footer {
+      border-top: 1px solid #242424;
+      padding: 20px 24px;
+    }
+    .card-option {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DF9FF;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #F0F0F0;
+      margin-bottom: 4px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .size-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #1E1E1E;
+    }
+    .size-label {
+      font-size: 11px;
+      color: #444;
+      font-weight: 500;
+    }
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .size-tag {
+      font-size: 10px;
+      color: #444;
+    }
+
+    /* ─── Option 1: Lettermark ─── */
+    .logo-lettermark {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .logo-lettermark .l-c {
+      font-family: 'Inter', sans-serif;
+      font-size: 72px;
+      font-weight: 900;
+      color: #7DF9FF;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .logo-lettermark .l-m {
+      font-family: 'Inter', sans-serif;
+      font-size: 72px;
+      font-weight: 900;
+      color: #F0F0F0;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .logo-lettermark .l-dot {
+      font-family: 'Inter', sans-serif;
+      font-size: 72px;
+      font-weight: 900;
+      color: #7DF9FF;
+      line-height: 1;
+      margin-left: -4px;
+    }
+
+    /* ─── Option 2: Badge ─── */
+    .logo-badge-wrap {
+      position: relative;
+      width: 110px;
+      height: 110px;
+    }
+
+    /* ─── Option 3: Geometric ─── */
+    .logo-geo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Small versions */
+    .sm-lettermark { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 900; letter-spacing: -0.04em; }
+    .sm-c { color: #7DF9FF; }
+    .sm-m { color: #F0F0F0; }
+    .sm-dot { color: #7DF9FF; }
+  </style>
+</head>
+<body>
+
+  <h1>Logo concepts — Cecil Mathai</h1>
+
+  <div class="grid">
+
+    <!-- Option 1: Lettermark -->
+    <div class="card">
+      <div class="card-preview">
+        <div class="logo-lettermark">
+          <span class="l-c">C</span><span class="l-m">M</span><span class="l-dot">.</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option A</div>
+        <div class="card-title">Lettermark</div>
+        <div class="card-desc">Bold typographic initials with an accent dot. Confident, minimal, and immediately readable. Matches the existing nav treatment.</div>
+        <div class="size-row">
+          <div class="size-label">Scales to:</div>
+          <div class="size-item">
+            <span class="sm-lettermark"><span class="sm-c">C</span><span class="sm-m">M</span><span class="sm-dot">.</span></span>
+            <span class="size-tag">32px</span>
+          </div>
+          <div class="size-item">
+            <span style="font-family:Inter,sans-serif;font-size:14px;font-weight:900;letter-spacing:-0.03em;"><span style="color:#7DF9FF;">C</span><span style="color:#F0F0F0;">M</span><span style="color:#7DF9FF;">.</span></span>
+            <span class="size-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 2: Badge / Circle -->
+    <div class="card">
+      <div class="card-preview">
+        <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer circle -->
+          <circle cx="55" cy="55" r="52" stroke="#7DF9FF" stroke-width="1.5" opacity="0.5"/>
+          <!-- Inner circle thin -->
+          <circle cx="55" cy="55" r="46" stroke="#7DF9FF" stroke-width="0.5" opacity="0.2"/>
+          <!-- C letter -->
+          <text x="14" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#7DF9FF" letter-spacing="-2">C</text>
+          <!-- M letter -->
+          <text x="53" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#F0F0F0" letter-spacing="-2">M</text>
+        </svg>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option B</div>
+        <div class="card-title">Monogram badge</div>
+        <div class="card-desc">Initials enclosed in a circular frame with a subtle double-ring detail. Polished and versatile — works great as a favicon or profile avatar.</div>
+        <div class="size-row">
+          <div class="size-label">Scales to:</div>
+          <div class="size-item">
+            <svg width="32" height="32" viewBox="0 0 110 110" fill="none">
+              <circle cx="55" cy="55" r="52" stroke="#7DF9FF" stroke-width="2" opacity="0.5"/>
+              <text x="14" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#7DF9FF" letter-spacing="-2">C</text>
+              <text x="53" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#F0F0F0" letter-spacing="-2">M</text>
+            </svg>
+            <span class="size-tag">32px</span>
+          </div>
+          <div class="size-item">
+            <svg width="16" height="16" viewBox="0 0 110 110" fill="none">
+              <circle cx="55" cy="55" r="52" stroke="#7DF9FF" stroke-width="3" opacity="0.5"/>
+              <text x="14" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#7DF9FF" letter-spacing="-2">C</text>
+              <text x="53" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#F0F0F0" letter-spacing="-2">M</text>
+            </svg>
+            <span class="size-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 3: Geometric / Interlocked -->
+    <div class="card">
+      <div class="card-preview">
+        <svg width="110" height="100" viewBox="0 0 110 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Rounded square backdrop -->
+          <rect x="4" y="4" width="102" height="92" rx="14" fill="#1C1C1C" stroke="#2E2E2E" stroke-width="1"/>
+          <!-- Geometric C — arc shape -->
+          <!-- C is a rounded arc: top bar, left curve, bottom bar -->
+          <path d="M62 28 Q30 28 30 50 Q30 72 62 72" stroke="#7DF9FF" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <!-- Geometric M — three strokes -->
+          <!-- Left vertical -->
+          <line x1="64" y1="28" x2="64" y2="72" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+          <!-- Right vertical -->
+          <line x1="92" y1="28" x2="92" y2="72" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+          <!-- Left diagonal -->
+          <line x1="64" y1="28" x2="78" y2="52" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+          <!-- Right diagonal -->
+          <line x1="92" y1="28" x2="78" y2="52" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+          <!-- Shared vertical bar (C's right opening aligns with M's left leg) -->
+          <line x1="64" y1="28" x2="64" y2="72" stroke="#7DF9FF" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="card-footer">
+        <div class="card-option">Option C</div>
+        <div class="card-title">Geometric mark</div>
+        <div class="card-desc">A constructed C and M sharing a vertical stroke, enclosed in a rounded container. Distinctive and ownable — the most logo-like of the three.</div>
+        <div class="size-row">
+          <div class="size-label">Scales to:</div>
+          <div class="size-item">
+            <svg width="32" height="29" viewBox="0 0 110 100" fill="none">
+              <rect x="4" y="4" width="102" height="92" rx="14" fill="#1C1C1C" stroke="#2E2E2E" stroke-width="2"/>
+              <path d="M62 28 Q30 28 30 50 Q30 72 62 72" stroke="#7DF9FF" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <line x1="64" y1="28" x2="64" y2="72" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+              <line x1="92" y1="28" x2="92" y2="72" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+              <line x1="64" y1="28" x2="78" y2="52" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+              <line x1="92" y1="28" x2="78" y2="52" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
+            </svg>
+            <span class="size-tag">32px</span>
+          </div>
+          <div class="size-item">
+            <svg width="16" height="14" viewBox="0 0 110 100" fill="none">
+              <rect x="4" y="4" width="102" height="92" rx="10" fill="#1C1C1C"/>
+              <path d="M62 28 Q30 28 30 50 Q30 72 62 72" stroke="#7DF9FF" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <line x1="64" y1="28" x2="64" y2="72" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+              <line x1="92" y1="28" x2="92" y2="72" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+              <line x1="64" y1="28" x2="78" y2="52" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+              <line x1="92" y1="28" x2="78" y2="52" stroke="#F0F0F0" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+            <span class="size-tag">16px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Light background preview -->
+  <div style="margin-top: 48px; max-width: 960px;">
+    <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #444; margin-bottom: 20px;">On light backgrounds</p>
+    <div style="background: #F5F5F5; border-radius: 12px; padding: 32px 40px; display: flex; align-items: center; gap: 56px; flex-wrap: wrap;">
+
+      <!-- A on light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <div style="font-family:Inter,sans-serif;font-size:48px;font-weight:900;letter-spacing:-0.04em;line-height:1;">
+          <span style="color:#0099A8;">C</span><span style="color:#111;">M</span><span style="color:#0099A8;">.</span>
+        </div>
+        <span style="font-size:11px;color:#999;font-weight:500;">Option A</span>
+      </div>
+
+      <!-- B on light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="72" height="72" viewBox="0 0 110 110" fill="none">
+          <circle cx="55" cy="55" r="52" stroke="#0099A8" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="55" cy="55" r="46" stroke="#0099A8" stroke-width="0.5" opacity="0.3"/>
+          <text x="14" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#0099A8" letter-spacing="-2">C</text>
+          <text x="53" y="72" font-family="Inter, sans-serif" font-weight="900" font-size="46" fill="#111" letter-spacing="-2">M</text>
+        </svg>
+        <span style="font-size:11px;color:#999;font-weight:500;">Option B</span>
+      </div>
+
+      <!-- C on light -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="72" height="66" viewBox="0 0 110 100" fill="none">
+          <rect x="4" y="4" width="102" height="92" rx="14" fill="#F0F0F0" stroke="#DDD" stroke-width="1"/>
+          <path d="M62 28 Q30 28 30 50 Q30 72 62 72" stroke="#0099A8" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <line x1="64" y1="28" x2="64" y2="72" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="92" y1="28" x2="92" y2="72" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="64" y1="28" x2="78" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="92" y1="28" x2="78" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+          <line x1="64" y1="28" x2="64" y2="72" stroke="#0099A8" stroke-width="7" stroke-linecap="round" opacity="0.3"/>
+        </svg>
+        <span style="font-size:11px;color:#999;font-weight:500;">Option C</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
